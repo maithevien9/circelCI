@@ -17,7 +17,7 @@ jobs:
           command: yarn build
       - run:
           name: Deploy Stg
-          command: ./node_modules/.bin/firebase use staging && ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+          command: ./node_modules/.bin/firebase use staging && ./node_modules/.bin/firebase deploy --token 0e5e6v4qmH1pGCgYIARAAGA4SNwF-L9IrhXf6DmaOXnQcMO68CR-NC12yYACtB6pqBigsV2RlXBxUCi4cLyYEqpbg8p0fWRkzjTg
 workflows:
   version: 2
   build_deploy_stg:
