@@ -23,6 +23,7 @@ workflows:
   build_deploy_stg:
     jobs:
       - build_deploy_stg:
+          context: circel-stg
           filters:
             branches:
               only: master
