@@ -20,11 +20,11 @@ jobs:
           name: Deploy Stg
           command: ./node_modules/.bin/firebase use monla-project && ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
       - slack/notify:
-          channel: test-monla-notification
+          channel: C02BTHT1ZGA
           event: fail
           template: basic_fail_1
       - slack/notify:
-          channel: test-monla-notification
+          channel: C02BTHT1ZGA
           event: pass
           template: basic_fail_1
 
