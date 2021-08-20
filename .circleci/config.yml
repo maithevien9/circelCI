@@ -20,14 +20,126 @@ jobs:
           name: Deploy Stg
           command: ./node_modules/.bin/firebase use monla-project && ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
       - slack/notify:
-          channel: C02BTHT1ZGA
           event: fail
-          template: basic_fail_1
+          custom: |
+            {
+              "attachments": [
+                {
+                  "color": "#f44336",
+                  "blocks": [
+                    {
+                      "type": "header",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Deployment failed! :x:",
+                        "emoji": true
+                      }
+                    },
+                    {
+                      "type": "section",
+                      "fields": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Project: *\n${CIRCLE_PROJECT_REPONAME}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Job: *\n${CIRCLE_JOB}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "section",
+                      "fields": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Branch: *\n${CIRCLE_BRANCH}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Author: *\n${CIRCLE_USERNAME}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "actions",
+                      "elements": [
+                        {
+                          "type": "button",
+                          "text": {
+                            "type": "plain_text",
+                            "text": "View Job :eyes:",
+                            "emoji": true
+                          },
+                          "url": "${CIRCLE_BUILD_URL}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          mentions: '@channel'
       - slack/notify:
-          channel: C02BTHT1ZGA
           event: pass
-          template: success_tagged_deploy_1
-
+          custom: |
+            {
+              "attachments": [
+                {
+                  "color": "#4caf50",
+                  "blocks": [
+                    {
+                      "type": "header",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Deployment Successful! :tada:",
+                        "emoji": true
+                      }
+                    },
+                    {
+                      "type": "section",
+                      "fields": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Project: *\n${CIRCLE_PROJECT_REPONAME}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Job: *\n${CIRCLE_JOB}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "section",
+                      "fields": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Branch: *\n${CIRCLE_BRANCH}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "*Author: *\n${CIRCLE_USERNAME}"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "actions",
+                      "elements": [
+                        {
+                          "type": "button",
+                          "text": {
+                            "type": "plain_text",
+                            "text": "View Job :eyes:",
+                            "emoji": true
+                          },
+                          "url": "${CIRCLE_BUILD_URL}"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
 workflows:
   version: 2
   build_deploy_stg:
