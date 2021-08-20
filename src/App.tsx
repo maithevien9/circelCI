@@ -10,7 +10,7 @@ function App() {
         <p>Edit and save to reload.</p>
         <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           OK luon
-        </a>
+        </a
       </header>
     </div>
   );
