@@ -79,7 +79,7 @@ jobs:
                 }
               ]
             }
-          mentions: '@channel'
+          webhook: $SLACK_WEBHOOK
       - slack/notify:
           event: pass
           custom: |
@@ -140,6 +140,7 @@ jobs:
                 }
               ]
             }
+          webhook: $SLACK_WEBHOOK
 workflows:
   version: 2
   build_deploy_stg:
